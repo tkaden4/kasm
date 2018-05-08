@@ -1,0 +1,13 @@
+; include global definitions for console io
+%include("cio_defs.kasm")
+string:
+__start:
+    ; call the console io write(string) function
+    cb CIO_PORT, r0
+    cb CIO_WRITE, r1
+    cl string, r2
+    wp r1, r0
+    wp r2, r0
+    ; read the response
+    rp r0, r4
+    halt
